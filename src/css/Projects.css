@@ -44,6 +44,7 @@
     display: flex;
     flex-direction: column;
     
+    /* Smooth transition for hover effects */
     transition: 
         transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
         box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
@@ -53,7 +54,7 @@
     overflow: hidden;
 }
 
-/* --- THE DYNAMIC SPOTLIGHT --- */
+/* --- THE DYNAMIC SPOTLIGHT (MOUSE TRACKING) --- */
 .card::before {
     content: "";
     position: absolute;
@@ -71,7 +72,7 @@
 
 .card:hover::before { opacity: 1; }
 
-/* --- PREMIUM HOVER --- */
+/* PREMIUM HOVER STATE */
 .card:hover {
     transform: translateY(-10px);
     border-color: rgba(203, 172, 249, 0.4);
@@ -81,16 +82,14 @@
         0 0 20px rgba(167, 139, 250, 0.1);
 }
 
-/* --- CARD IMAGE (CSS VARIABLE POWERED) --- */
+/* --- CARD IMAGE CONTAINER --- */
 .card-img {
     height: 320px;
     width: 100%;
-    /* This variable is injected via inline styles in Projects.jsx */
-    background-image: var(--bg-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(255, 255, 255, 0.03); /* Fallback color */
+    background-color: rgba(255, 255, 255, 0.03); /* Fallback */
     border-radius: 20px;
     margin-bottom: 2rem;
     border: none; 
@@ -100,7 +99,16 @@
     overflow: hidden;
 }
 
-/* Image Overlay for Gradient Fade */
+/* IMAGE ASSIGNMENTS (Vercel-Friendly Paths) */
+.card:nth-child(1) .card-img {
+    background-image: url("image1.PNG");
+}
+
+.card:nth-child(2) .card-img {
+    background-image: url("image2.PNG");
+}
+
+/* Fade Overlay for the Image */
 .img-overlay {
     position: absolute;
     inset: 0;
@@ -132,7 +140,7 @@
     flex: 1;
 }
 
-/* --- FOOTER --- */
+/* --- FOOTER / TECH STACK --- */
 .card-tags {
     display: flex;
     justify-content: space-between;
@@ -171,6 +179,7 @@
     height: 20px;
 }
 
+/* LIVE LINK STYLING */
 .live-link {
     color: #CBACF9;
     text-decoration: none;
@@ -184,7 +193,7 @@
 
 .live-link:hover { opacity: 0.7; }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 1024px) {
     .card { 
         flex: 1 1 100%; 

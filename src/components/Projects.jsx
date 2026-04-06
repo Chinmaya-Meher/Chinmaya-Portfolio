@@ -6,7 +6,6 @@ const projectsData = [
     id: 1,
     title: "AlgoVue - DSA Visualizer",
     description: "AlgoVue is an interactive platform designed to visualize algorithms, making complex concepts easier to understand through animations.",
-    image: "/image1.PNG", 
     icons: ["https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"],
     link: "https://algovue-orcin.vercel.app/"
   },
@@ -14,7 +13,6 @@ const projectsData = [
     id: 2,
     title: "StrengthHub Fitness - Premium Gym Landing Page",
     description: "A high-conversion landing page for a premium fitness center. Built with a focus on 'Deep Space' aesthetics.",
-    image: "/image2.PNG",
     icons: ["https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"],
     link: "https://strengthhub-fitness.vercel.app/"
   }
@@ -44,14 +42,10 @@ export default function Projects() {
       
       <div className='project-wrapper'>
         {projectsData.map((project) => (
-          <div 
-            className='card' 
-            key={project.id} 
-            style={{ "--bg-image": `url(${project.image})` }} // Passing image to CSS
-          >
+          <div className='card' key={project.id}>
             <div className="card-spotlight"></div>
 
-            {/* The image is now handled via the CSS variable */}
+            {/* No inline style here anymore */}
             <div className='card-img'>
                <div className="img-overlay"></div>
             </div>
