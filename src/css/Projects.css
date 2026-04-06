@@ -27,7 +27,6 @@
     max-width: 1300px;
     width: 100%;
     margin: 0 auto;
-    /* Removed perspective for a clean, flat modern feel */
 }
 
 /* --- THE PREMIUM CARD --- */
@@ -36,16 +35,15 @@
     flex: 1 1 calc(50% - 2rem); 
     max-width: 48%;
     min-height: 650px;
-    background: rgba(10, 12, 33, 0.4); /* Slightly more transparent */
-    backdrop-filter: blur(20px); /* Increased blur for premium glass feel */
+    background: rgba(10, 12, 33, 0.4);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 32px; /* Slightly tighter radius for a modern look */
+    border-radius: 32px;
     padding: 2.5rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     
-    /* Smooth, linear-to-soft transition */
     transition: 
         transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
         box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
@@ -73,30 +71,41 @@
 
 .card:hover::before { opacity: 1; }
 
-/* --- PREMIUM HOVER (NO TILT, NO POP) --- */
+/* --- PREMIUM HOVER --- */
 .card:hover {
-    transform: translateY(-10px); /* Clean vertical lift only */
+    transform: translateY(-10px);
     border-color: rgba(203, 172, 249, 0.4);
-    background: rgba(10, 12, 33, 0.7); /* Darkens slightly on hover */
-    /* Deep, elegant shadow for elevation */
+    background: rgba(10, 12, 33, 0.7);
     box-shadow: 
         0 25px 50px -12px rgba(0, 0, 0, 0.8),
         0 0 20px rgba(167, 139, 250, 0.1);
 }
 
-/* --- CARD IMAGE (CLEAN) --- */
+/* --- CARD IMAGE (CSS VARIABLE POWERED) --- */
 .card-img {
     height: 320px;
     width: 100%;
+    /* This variable is injected via inline styles in Projects.jsx */
+    background-image: var(--bg-image);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.03); /* Fallback color */
     border-radius: 20px;
     margin-bottom: 2rem;
-    /* Removed all borders/outlines to fix the grey border issue */
     border: none; 
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); /* Soft shadow under image */
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
+    overflow: hidden;
+}
+
+/* Image Overlay for Gradient Fade */
+.img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 3, 25, 0.5));
+    pointer-events: none;
 }
 
 /* --- CARD CONTENT --- */
@@ -129,7 +138,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle line */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     margin-top: auto;
 }
 
@@ -177,6 +186,13 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
-    .card { flex: 1 1 100%; max-width: 100%; min-height: auto; padding: 2rem; }
-    .card-img { height: 260px; }
+    .card { 
+        flex: 1 1 100%; 
+        max-width: 100%; 
+        min-height: auto; 
+        padding: 2rem; 
+    }
+    .card-img { 
+        height: 260px; 
+    }
 }

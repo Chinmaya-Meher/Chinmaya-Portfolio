@@ -5,31 +5,22 @@ const projectsData = [
   {
     id: 1,
     title: "AlgoVue - DSA Visualizer",
-    description: "AlgoVue is an interactive platform designed to visualize algorithms, making complex concepts easier to understand through animations.It helps learners grasp data structures and algorithm behavior step-by-step in a more engaging and intuitive way.",
+    description: "AlgoVue is an interactive platform designed to visualize algorithms, making complex concepts easier to understand through animations.",
     image: "/image1.PNG", 
-    icons: [
-      "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg",
-      
-    ],
+    icons: ["https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"],
     link: "https://algovue-orcin.vercel.app/"
   },
   {
     id: 2,
     title: "StrengthHub Fitness - Premium Gym Landing Page",
-    description: "A high-conversion landing page for a premium fitness center. Built with a focus on 'Deep Space' aesthetics, featuring interactive service cards, a responsive trainer showcase, and optimized lead-capture forms to drive gym memberships. ",
+    description: "A high-conversion landing page for a premium fitness center. Built with a focus on 'Deep Space' aesthetics.",
     image: "/image2.PNG",
-    icons: [
-      "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg",
-      
-    ],
+    icons: ["https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"],
     link: "https://strengthhub-fitness.vercel.app/"
   }
 ];
 
 export default function Projects() {
-  // Spotlight Logic: Tracks mouse position for the premium glow effect
   useEffect(() => {
     const handleMouseMove = (e) => {
       const cards = document.getElementsByClassName("card");
@@ -37,12 +28,10 @@ export default function Projects() {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
         card.style.setProperty("--mouse-x", `${x}px`);
         card.style.setProperty("--mouse-y", `${y}px`);
       }
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
@@ -55,14 +44,15 @@ export default function Projects() {
       
       <div className='project-wrapper'>
         {projectsData.map((project) => (
-          <div className='card' key={project.id}>
-            {/* The Inner Glow Layer */}
+          <div 
+            className='card' 
+            key={project.id} 
+            style={{ "--bg-image": `url(${project.image})` }} // Passing image to CSS
+          >
             <div className="card-spotlight"></div>
 
-            <div 
-              className='card-img' 
-              style={{ backgroundImage: `url(${project.image})` }}
-            >
+            {/* The image is now handled via the CSS variable */}
+            <div className='card-img'>
                <div className="img-overlay"></div>
             </div>
             
