@@ -6,7 +6,7 @@ const projectsData = [
     id: 1,
     title: "AlgoVue - DSA Visualizer",
     description: "AlgoVue is an interactive platform designed to visualize algorithms, making complex concepts easier to understand through animations.It helps learners grasp data structures and algorithm behavior step-by-step in a more engaging and intuitive way.",
-    image: "/image1.png", 
+    image: "/image1.PNG", 
     icons: [
       "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
       "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg",
@@ -18,7 +18,7 @@ const projectsData = [
     id: 2,
     title: "StrengthHub Fitness - Premium Gym Landing Page",
     description: "A high-conversion landing page for a premium fitness center. Built with a focus on 'Deep Space' aesthetics, featuring interactive service cards, a responsive trainer showcase, and optimized lead-capture forms to drive gym memberships. ",
-    image: "/image2.png",
+    image: "/image2.PNG",
     icons: [
       "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
       "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg",
