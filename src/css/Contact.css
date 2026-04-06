@@ -1,0 +1,130 @@
+.contact-section {
+    background-color: #000319;
+    padding: 120px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.contact-mesh {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(203, 172, 249, 0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.contact-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.contact-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(203, 172, 249, 0.1);
+    border: 1px solid rgba(203, 172, 249, 0.2);
+    border-radius: 100px;
+    color: #CBACF9;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+.contact-header {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 48px;
+    letter-spacing: -2px;
+}
+
+/* --- THE IMPROVED PILLS --- */
+.social-pills-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.social-pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px; /* Slightly squarer "Modern" pill */
+    text-decoration: none;
+    color: #BEC1DD;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
+    animation: slideIn 0.6s ease out both;
+}
+
+/* Moving Shimmer Effect */
+.pill-shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.social-pill:hover .pill-shimmer {
+    left: 100%;
+}
+
+.pill-icon {
+    width: 22px;
+    height: 22px;
+    transition: 0.3s;
+}
+
+/* --- THE HOVER POP --- */
+.social-pill:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--hover-color);
+    color: white;
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5), 
+                0 0 15px -5px var(--hover-color);
+}
+
+.contact-footer {
+    margin-top: 60px;
+    color: #BEC1DD;
+    font-size: 0.9rem;
+    opacity: 0.5;
+}
+
+/* Drop-in Animation */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .contact-header { font-size: 2.5rem; }
+    .social-pills-container { flex-direction: column; }
+}

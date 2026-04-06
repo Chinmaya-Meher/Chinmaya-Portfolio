@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🔥 Custom base styles */
+@layer base {
+  body {
+    @apply bg-[#000319] text-white font-sans m-0 p-0;
+  }
+}
+html {
+  scroll-behavior: smooth;
+  /* Adjust based on your navbar height + margin */
+}

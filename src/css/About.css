@@ -1,0 +1,515 @@
+/* ================= ABOUT SECTION BASE ================= */
+.about-section {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000319;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* PC DEFAULT GRID */
+.bento-container {
+    display: flex;
+    flex-direction: row;
+    height: 900px; /* Increased overall height to accommodate larger boxes */
+    gap: 28px;
+    width: 100%;
+    max-width: 1300px;
+}
+
+/* ================= BOX CORE ================= */
+.box {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 38px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0c0e23 0%, #04071d 100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.box:hover {
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    transform: translateY(-8px);
+}
+
+.box-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* ================= LAYOUT COLUMNS (DESKTOP) ================= */
+.column-left {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.column-right {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* THE PRIMARY BOX: Taller Headline with Laptop BG */
+.box-a {
+    flex-basis: 70%; 
+    position: relative;
+    
+    /* 🔥 Background Image with Overlay (Same Folder Path) */
+    background-image: 
+        linear-gradient(rgba(0, 3, 25, 0.65), rgba(0, 3, 25, 0.85)), 
+        url("./laptop.png"); 
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle reveal effect on hover */
+.box-a:hover {
+    background-image: 
+        linear-gradient(rgba(0, 3, 25, 0.45), rgba(0, 3, 25, 0.7)), 
+        url("laptop.png");
+    
+    border: 1px solid rgba(167, 139, 250, 0.5);
+    transform: translateY(-8px);
+}
+.row-bottom {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 30%; /* Decreased to balance the total height */
+    gap: 28px;
+}
+
+.column-split-b {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* INTERNAL RATIOS FOR COLUMN B */
+.box-b-top { height: 35%; }
+.box-b-bottom { height: 65%; }
+
+/* ================= BOX C: THE INSIDE SCOOP (Dynamic Waves) ================= */
+.box-c {
+    width: 45%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: 
+        radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+        linear-gradient(180deg, #0c0e23 0%, #04071d 100%);
+}
+
+.scoop-img-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.scoop-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 🧊 Blending the image into your dark theme */
+    opacity: 0.2; 
+    mix-blend-mode: screen;
+    filter: grayscale(1) brightness(0.8);
+    /* Fades the image edges so it feels integrated */
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    transition: all 0.6s ease;
+}
+
+.box-c:hover .scoop-bg-img {
+    opacity: 0.4;
+    transform: scale(1.1);
+    filter: grayscale(0) saturate(1.2); /* Brings back purple color on hover */
+}
+
+/* Ensure text content stays above the image */
+.box-c .box-content {
+    position: relative;
+    z-index: 1;
+}
+/* ================= BOX D: TECH STACK (Intersecting Grid) ================= */
+.box-d {
+    flex-basis: 45%;
+    position: relative;
+    overflow: hidden;
+    
+    /* Solid border not affected by mask */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    background-color: #04071d; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Pseudo-element for the grid so mask doesn't cut the box border */
+.box-d::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(167, 139, 250, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(167, 139, 250, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px; 
+    mask-image: radial-gradient(circle at center, black 40%, transparent 95%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 95%);
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+/* ================= BOX E: ACTIVE PROJECT (Intersecting Grid) ================= */
+.box-e {
+    flex-basis: 60%;
+    position: relative;
+    overflow: hidden;
+    background-color: #04071d; /* Matches your dark theme base */
+    background: linear-gradient(180deg, #0c0e23 0%, #04071d 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1;
+}
+
+/* 🏁 The Intersecting Grid Layer */
+.box-e::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    
+    /* ⚡ The Sharp 1px Intersecting Lines */
+    background-image: 
+        linear-gradient(to right, rgba(167, 139, 250, 0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(167, 139, 250, 0.12) 1px, transparent 1px);
+    background-size: 45px 45px; /* Size of the grid squares */
+    
+    /* 🧊 Fade mask: Grid is strongest at the Top-Right (near the code) */
+    mask-image: radial-gradient(circle at 80% 20%, black 10%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 80% 20%, black 10%, transparent 70%);
+    
+    opacity: 0.6;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+/* ================= BOX E: ACTIVE PROJECT (Code Card with Grid) ================= */
+.box-e::after {
+    /* 🚀 The Code Logic */
+    content: "async function validate(inv) { \A   const isGstValid = await verify(inv.gst); \A   if (!isGstValid) return 'FLAGGED'; \A   \A   const risk = AI.analyze(inv.patterns); \A   return risk > 0.8 ? 'FRAUD' : 'SAFE'; \A }";
+    white-space: pre;
+    position: absolute;
+    
+    /* 📍 Positioning & Size */
+    top: 35px; 
+    right: -15px; 
+    padding: 35px;
+    border-radius: 24px;
+    z-index: 0;
+    pointer-events: none;
+    
+    /* 📏 Typography */
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #a78bfa;
+
+    /* 🧊 Glassmorphism + 🔥 INTERSECTING GRID */
+    background-color: rgba(13, 14, 33, 0.7); /* Slightly darker for contrast */
+    background-image: 
+        linear-gradient(to right, rgba(167, 139, 250, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+   
+    
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    backdrop-filter: blur(15px);
+    
+    /* 🎨 Effects */
+    transform: rotate(-3deg);
+    opacity: 0.6;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+
+/* ⚡ Hover Interaction */
+.box-e:hover::before {
+    /* Grid lights up slightly on hover */
+    opacity: 1;
+    background-image: 
+        linear-gradient(to right, rgba(167, 139, 250, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(167, 139, 250, 0.25) 1px, transparent 1px);
+}
+/* ⚡ Interactive Hover Sync */
+.box-e:hover::after {
+    opacity: 1;
+    transform: rotate(0deg) scale(1.05);
+    border-color: rgba(167, 139, 250, 0.5);
+    /* Grid lights up on hover */
+    background-image: 
+        linear-gradient(to right, rgba(167, 139, 250, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(167, 139, 250, 0.2) 1px, transparent 1px);
+}
+
+/* ================= SHARED HOVER SYNC ================= */
+.box-c:hover, .box-d:hover, .box-e:hover {
+    transform: translateY(-8px);
+    border: 1px solid rgba(167, 139, 250, 0.5); 
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.15);
+}
+
+/* Specific inner glow for Box D grid on hover */
+.box-d:hover::before {
+    background-image: 
+        linear-gradient(to right, rgba(167, 139, 250, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(167, 139, 250, 0.2) 1px, transparent 1px);
+}
+/* ================= TYPOGRAPHY & ALIGNMENT ================= */
+.align-bottom-left { justify-content: flex-end; align-items: flex-start; text-align: left; }
+.align-top-left { justify-content: flex-start; align-items: flex-start; text-align: left; }
+.align-center { justify-content: center; align-items: center; text-align: center; }
+
+.title-lg {
+    font-size: clamp(2rem, 4vw, 2.2rem); /* Slightly larger to fill the taller box */
+    color: white;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.title-md {
+    font-size: clamp(1.2rem, 2.2vw, 1.2rem);
+    color: white;
+    font-weight: 600;
+}
+
+.desc-xl {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #a78bfa 0%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-title {
+    color: #ffffff;
+    font-size: clamp(1rem, 1.6vw, 1.3rem);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.label {
+    color: #c4b5fd;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.desc-md { color: #E4Ecff; opacity: 0.9; font-size: 1.3rem; max-width: 90%; }
+.desc-sm { color: #cfcfcf; font-size: 1rem; line-height: 1.5; }
+.text-purple { color: #a78bfa; }
+
+
+
+.btn-copy.copied {
+    background: rgba(34, 197, 94, 0.2); /* Soft Green */
+    border-color: #22c55e;
+    color: #22c55e;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+/* ================= BUTTONS & GLOW ================= */
+.bg-glow {
+    background: radial-gradient(circle at center, rgba(167, 139, 250, 0.15) 0%, #04071d 100%) !important;
+    border: 1px solid rgba(167, 139, 250, 0.3) !important;
+}
+
+.btn-copy {
+    background: rgba(167, 139, 250, 0.1);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    padding: 12px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-copy:hover {
+    background: rgba(167, 139, 250, 0.2);
+    color: white;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+}
+/* ================= TECH STACK GRID (SPREADED) ================= */
+.tech-stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+    justify-content: flex-start;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 16px;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.tech-item:hover {
+    background: rgba(167, 139, 250, 0.1);
+    border-color: rgba(167, 139, 250, 0.5);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+                0 0 15px rgba(167, 139, 250, 0.1);
+}
+/* ================= LOGO GROW EFFECT ================= */
+
+/* 1. Base State: The logo itself */
+.tech-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    /* Soft filter for dark mode match */
+    filter: grayscale(20%); 
+    
+    /* 🔥 Added scale transition (crucial) */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+    
+    /* Ensure it scales from the center */
+    transform-origin: center center;
+}
+
+/* 2. Hover State: What happens when the container (.tech-item) is hovered */
+.tech-item:hover .tech-logo {
+    filter: grayscale(0%); /* Full color on hover */
+    
+    /* 🔥 Added "Grow" transform */
+    transform: scale(1.3) rotate(-3deg); /* Scales up 30% and gives a cool, slight tilt */
+    
+    /* Optional: Slight shadow on the logo itself for depth */
+    filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.4));
+}
+
+/* 3. Keep the overall pill lift effect for context */
+.tech-item:hover {
+    background: rgba(167, 139, 250, 0.1);
+    border-color: rgba(167, 139, 250, 0.5);
+    transform: translateY(-5px); /* Just lifts slightly, doesn't scale up the text */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tech-item:hover .tech-logo {
+    filter: grayscale(0%); /* Full color on hover */
+}
+
+.tech-name {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Specific fix for Aceternity logo which is often dark */
+.tech-item img[alt="Aceternity"] {
+    filter: invert(1) brightness(2);
+}
+
+/* ================= ADJUSTMENTS FOR BOX D ================= */
+.box-d {
+    flex-basis: 45% ; /* Making it slightly taller to fit the grid */
+}
+
+.box-d .box-content {
+    justify-content: flex-start ;
+}
+
+
+/* ================= MOBILE RESPONSIVENESS ================= */
+@media (max-width: 767px) {
+    /* 1. Stack the columns */
+    .bento-container {
+        flex-direction: column;
+        height: auto; /* Remove the fixed 900px height from desktop */
+        gap: 20px;   /* Slightly tighter gap for mobile */
+    }
+
+    /* 2. Make columns full width */
+    .column-left, 
+    .column-right, 
+    .column-split-b,
+    .row-bottom { 
+        width: 100% !important; 
+        height: auto !important; 
+        flex-basis: auto !important;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* 3. FORCE ALL BOXES TO SAME HEIGHT */
+    .box, 
+    .box-a, 
+    .box-b-top, 
+    .box-b-bottom, 
+    .box-c, 
+    .box-d, 
+    .box-e { 
+        min-height: 350px !important; /* 🔥 This makes them all the same length */
+        height: 350px !important;     /* Hard height for perfect symmetry */
+        width: 100% !important;
+        flex-basis: auto !important;
+    }
+
+    /* 4. Adjust content padding so it doesn't look cramped */
+    .box-content {
+        padding: 30px 20px;
+    }
+
+    /* 5. Fix specific overlaps for mobile */
+    .box-e::after {
+        font-size: 0.75rem; /* Smaller code text so it doesn't overflow */
+        padding: 15px;
+        top: 20px;
+        right: -10px;
+        width: 80%; /* Don't let the code card take over the whole box */
+    }
+
+    .title-lg {
+        font-size: 1.8rem;
+    }
+
+    .desc-md {
+        font-size: 1rem;
+    }
+}

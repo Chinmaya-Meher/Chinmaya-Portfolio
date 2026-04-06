@@ -1,0 +1,170 @@
+/* --- SECTION CONTAINER --- */
+.skills-section {
+    background-color: #000319;
+    padding: 120px 24px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    /* --- THE INTERSECTING CIRCUIT LINES --- */
+    /* Sharp 1.5px lines at 0.2 opacity for clear visibility */
+    background-image: 
+        linear-gradient(rgba(203, 172, 249, 0.2) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(203, 172, 249, 0.2) 1.5px, transparent 1.5px);
+    background-size: 80px 80px; 
+    background-position: center center;
+}
+
+/* The Vignette: Ensures the lines fade into the background at the edges */
+.skills-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center, 
+        transparent 10%, 
+        rgba(0, 3, 25, 0.4) 40%, 
+        #000319 85%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.skills-container {
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.skills-header {
+    color: white;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 80px;
+    letter-spacing: -1px;
+}
+
+.text-purple { 
+    color: #CBACF9; 
+    text-shadow: 0 0 15px rgba(203, 172, 249, 0.5);
+}
+
+/* --- THE BENTO GRID --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 1.5rem;
+    grid-auto-flow: dense;
+}
+
+/* --- CARD SIZES --- */
+.large { grid-column: span 2; grid-row: span 2; }
+.medium { grid-column: span 2; grid-row: span 1; }
+.small { grid-column: span 1; grid-row: span 1; }
+
+.skill-card {
+    position: relative;
+    background: rgba(4, 7, 29, 0.9); /* Opaque background to pop against the grid */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    overflow: hidden;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.skill-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Layout Variations */
+.large .skill-content { flex-direction: column; gap: 20px; }
+.large .skill-icon { width: 80px; height: 80px; }
+.medium .skill-content { flex-direction: row; gap: 20px; text-align: left; }
+
+.skill-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    transition: all 0.6s ease;
+    filter: drop-shadow(0 0 8px rgba(203, 172, 249, 0.2));
+}
+
+.skill-info h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.skill-info p {
+    color: #BEC1DD;
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* --- HOVER EFFECTS --- */
+.card-bg-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center, 
+        rgba(203, 172, 249, 0.2), 
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+.skill-card:hover {
+    border-color: rgba(203, 172, 249, 0.6);
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(10, 14, 45, 0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(167, 139, 250, 0.1);
+}
+
+.skill-card:hover .card-bg-glow { opacity: 1; }
+
+.skill-card:hover .skill-icon { 
+    transform: scale(1.1) rotate(8deg);
+    filter: drop-shadow(0 0 20px rgba(203, 172, 249, 0.8));
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+    .bento-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .bento-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        grid-auto-rows: 160px;
+    }
+    .large { grid-column: span 2; grid-row: span 1; }
+    .skills-header { font-size: 2.8rem; }
+}
+
+@media (max-width: 480px) {
+    .bento-grid { 
+        grid-template-columns: 1fr; 
+        grid-auto-rows: 140px; 
+    }
+    .large, .medium, .small { grid-column: span 1; }
+    .skills-section { padding: 80px 16px; }
+}

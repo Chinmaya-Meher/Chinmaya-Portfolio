@@ -1,0 +1,137 @@
+/* ================= WRAPPER ================= */
+.nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%; /* Changed to 100% to ensure centering works */
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* 🔥 Critical: Allows clicks to pass through empty space */
+}
+
+/* ================= NAVBAR ================= */
+.nav-pill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+  gap: 60px; 
+
+  /* Width logic: auto with padding usually looks better than fixed % */
+  width: auto; 
+  height: 65px; 
+  padding: 0 40px;
+
+  border-radius: 14px; 
+  background: rgba(0, 3, 25, 0.75); 
+  border: 1px solid rgba(124, 58, 237, 0.25); 
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.08);
+
+  transition: all 0.3s ease;
+  pointer-events: auto; /* 🔥 Critical: Enables clicks on the navbar itself */
+  position: relative;
+}
+
+.nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(124, 58, 237, 0.15),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.nav-pill:hover::before {
+  opacity: 1;
+}
+
+.nav-pill:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow:
+    0 0 25px rgba(124, 58, 237, 0.15),
+    inset 0 0 20px rgba(124, 58, 237, 0.05);
+}
+
+/* ================= LINKS (Updated from p to a) ================= */
+.nav-pill a {
+  margin: 0;
+  color: #d1d1d1;
+  text-decoration: none; /* 🔥 Removes default link underline */
+  font-size: 16px; 
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-pill a:hover {
+  color: white;
+}
+
+/* underline glow */
+.nav-pill a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  box-shadow: 0 0 10px #7c3aed;
+  transition: 0.3s;
+}
+
+.nav-pill a:hover::after {
+  width: 100%;
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+  .nav-pill {
+    gap: 40px;
+    height: 60px;
+  }
+
+  .nav-pill a {
+    font-size: 15px;
+  }
+}
+
+/* ================= SMALL TABLET ================= */
+@media (max-width: 768px) {
+  .nav-pill {
+    gap: 25px;
+    height: 55px;
+    padding: 0 25px;
+  }
+
+  .nav-pill a {
+    font-size: 14px;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 480px) {
+  .nav-pill {
+    margin-top: 20px;
+    height: auto;
+    gap: 15px;
+    padding: 12px 16px;
+    flex-wrap: wrap; 
+    justify-content: center;
+  }
+
+  .nav-pill a {
+    font-size: 13px;
+  }
+}
